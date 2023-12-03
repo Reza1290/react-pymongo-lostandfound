@@ -50,9 +50,9 @@ export default function AuthPage(){
                 // Handle authentication failure
                 setErrorMsg(response.data.message);
             }
-        } catch (error) {
+        } catch (error:any) {
             console.error('Error during login:', error);
-            setErrorMsg('An unexpected error occurred.');
+            setErrorMsg(error.response.data.message);
         }
     }
 
@@ -97,8 +97,8 @@ export default function AuthPage(){
 
 
     return(
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded shadow-lg w-96">
+        <div className="min-h-screen flex items-center justify-center border border-gray-200/20 rounded-xl text-gray-200">
+        <div className="p-8 rounded w-96">
           <h2 className="text-2xl font-bold mb-4">
             {login ? 'Log In' : 'Register'}
           </h2>
@@ -115,11 +115,11 @@ export default function AuthPage(){
             
 
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nama">
-                Username:
+              <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="nama">
+                Username
               </label>
               <input
-                className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-gray-800 "
                 type="text"
                 id="nama"
                 placeholder="username"
@@ -129,11 +129,11 @@ export default function AuthPage(){
             </div>
             { !login && (
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                Email:
+              <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="email">
+                Email
               </label>
               <input
-                className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-gray-800 "
                 type="email"
                 id="email"
                 placeholder="Your email"
@@ -143,11 +143,11 @@ export default function AuthPage(){
             </div>
             )}
             <div className="mb-6">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                Password:
+              <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="password">
+                Password
               </label>
               <input
-                className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-gray-800 "
                 type="password"
                 id="password"
                 placeholder="Your password"
@@ -158,11 +158,11 @@ export default function AuthPage(){
             { !login && (
                 <>
                 <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                    Password:
+                    <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="password">
+                    Password
                     </label>
                     <input
-                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-gray-800 "
                     type="password"
                     id="repassword"
                     placeholder="Your password again"
@@ -171,11 +171,11 @@ export default function AuthPage(){
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                    Alamat:
+                    <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="password">
+                    Alamat
                     </label>
                     <input
-                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-gray-800 "
                     type="text"
                     id="alamat"
                     placeholder="Alamat Lengkap"
@@ -184,11 +184,11 @@ export default function AuthPage(){
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                    NO Telepon:
+                    <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="password">
+                    No Telepon
                     </label>
                     <input
-                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-gray-800 "
                     type="number"
                     id="telepon"
                     placeholder="Tanpa +"
@@ -197,11 +197,11 @@ export default function AuthPage(){
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                    Tgl Lahir:
+                    <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="password">
+                    Tanggal Lahir
                     </label>
                     <input
-                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 rounded shadow appearance-none focus:outline-none focus:shadow-outline bg-gray-800 "
                     type="date"
                     id="birth"
                     placeholder="yyyy-mm-dd"
@@ -221,7 +221,7 @@ export default function AuthPage(){
             </button>
           </form>
           <p className="mt-4 text-center">
-            {login ? 'Don’t have an account?' : 'Already have an account?'}
+            {login ? 'Don’t have an account? ' : 'Already have an account? '}
             <button
               className="text-blue-500 hover:underline focus:outline-none"
               onClick={toggleAuthMode}

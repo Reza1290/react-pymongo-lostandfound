@@ -35,7 +35,7 @@ const PresistLogin = () => {
   return (
     <>
       {isLoading ? (
-        <>Loading...</>
+        <div className="text-center">Loading...</div>
       ) : auth?.access_token ? (
         <Outlet/>
       ) : (

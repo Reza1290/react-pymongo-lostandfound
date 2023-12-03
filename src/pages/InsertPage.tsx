@@ -31,7 +31,7 @@ export default function InsertPage() {
     const [description,setDesc] = useState('')
     const [location,setLoc] = useState('')
     const [date,setTanggal] = useState('')
-    const [status,setStatus] = useState('found')
+    const [status,setStatus] = useState('')
     const {auth}:any = useAuth()
     const nav = useNavigate()
     const token = auth?.access_token
@@ -72,31 +72,35 @@ export default function InsertPage() {
     
 
     return(
-        <div className="flex-col md:w-[40%] items-center sm:mx-auto mx-2 p-10 border-2 rounded-md mt-10 mb-5 border-black ">
-            <div className="text-center mb-5">
-                INSERT
+        <div className="bg-main flex-col md:w-[50%] items-center sm:mx-auto mx-2 p-10 rounded-md mt-10 mb-5 border-gray-200/20 border ">
+                <div className="text-center mb-5 text-3xl font-bold text-gray-200">
+                Edit
             </div>
             <div className="my-2">
-                <Input crossOrigin='' label="Item Name"  onChange={(e) => {setName(e.target.value)}} />
+                <label className="text-gray-200">Nama Barang</label>
+                <input className="w-full rounded-md p-1 bg-gray-800 border border-gray-200/20 text-gray-200 " defaultValue={data.item_name || ''} onChange={(e) => {setName(e.target.value)}} />
             </div>
             <div className="my-2">
-                <Input crossOrigin='' label="Location"  onChange={(e) => {setLoc(e.target.value)}} />
+                <label className="text-gray-200">Lokasi</label>
+                <input className="w-full rounded-md p-1 bg-gray-800 border border-gray-200/20 text-gray-200 " defaultValue={data.location || ''} onChange={(e) => {setLoc(e.target.value)}} />
             </div>
             <div className="my-2">
-                    <Textarea label="Message"  onChange={(e) => {setDesc(e.target.value)}}/>
+            <label className="text-gray-200">Deskripsi</label>
+                    <textarea className="w-full rounded-md p-1 bg-gray-800 border border-gray-200/20 text-gray-200 " defaultValue={data.description} onChange={(e) => {setDesc(e.target.value)}}></textarea>
             </div>
             <div className="my-2">
-                <Input crossOrigin='' type="date" label="Location"  onChange={(e) => {setTanggal(e.target.value)}} />
+            <label className="text-gray-200">Tanggal Kejadian</label>
+                <input type="date" className="w-full rounded-md p-1 bg-gray-800 border border-gray-200/20 text-gray-200 " defaultValue={date || ''} onChange={(e) => {setTanggal(e.target.value)}} />
             </div>
             <div className="my-2">
-            <Select label="Kategori" variant="outlined">
-                <Option  onSelect={(e) => {setStatus('found')}}>FOUND</Option>
-                <Option  onSelect={(e) => {setStatus('lost')}}>LOST</Option>
-            </Select>
+            <label className="text-gray-200">Kategori</label>
+            <select value={status} className="w-full rounded-md p-1 bg-gray-800 border border-gray-200/20 text-gray-200 " onChange={(e) => {setStatus(e.target.value)}}>
+                <option value={'lost'}>LOST</option>
+                <option value={'found'}>FOUND</option>
+            </select>
             </div>
             <div className="mt-8 flex justify-between">
-                <Button color="blue" className="rounded-md" onClick={insertData}>ADD</Button>
-                
+                <button color="blue" className="rounded-md bg-blue-500 p-1 font-bold px-5 text-white" onClick={insertData}>ADD</button>
             </div>
         </div>
     )
